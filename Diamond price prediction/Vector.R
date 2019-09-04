@@ -37,7 +37,7 @@ repvector1
 
 
 # [] is not required in R,many times
-repvector[2]
+repvector[0:-1]
 repvector[3]
 repvector[4]
 repvector[5]

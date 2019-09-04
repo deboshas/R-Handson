@@ -1,0 +1,204 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={World-Trend-Analysis.R},
+            pdfauthor={DEBJYOTA},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{World-Trend-Analysis.R}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{DEBJYOTA}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-08-12}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+
+\CommentTok{#Execute below code to generate three new vectors}
+
+\NormalTok{Country_Code <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ABW"}\NormalTok{,}\StringTok{"AFG"}\NormalTok{,}\StringTok{"AGO"}\NormalTok{,}\StringTok{"ALB"}\NormalTok{,}\StringTok{"ARE"}\NormalTok{,}\StringTok{"ARG"}\NormalTok{,}\StringTok{"ARM"}\NormalTok{,}\StringTok{"ATG"}\NormalTok{,}\StringTok{"AUS"}\NormalTok{,}\StringTok{"AUT"}\NormalTok{,}\StringTok{"AZE"}\NormalTok{,}\StringTok{"BDI"}\NormalTok{,}\StringTok{"BEL"}\NormalTok{,}\StringTok{"BEN"}\NormalTok{,}\StringTok{"BFA"}\NormalTok{,}\StringTok{"BGD"}\NormalTok{,}\StringTok{"BGR"}\NormalTok{,}\StringTok{"BHR"}\NormalTok{,}\StringTok{"BHS"}\NormalTok{,}\StringTok{"BIH"}\NormalTok{,}\StringTok{"BLR"}\NormalTok{,}\StringTok{"BLZ"}\NormalTok{,}\StringTok{"BOL"}\NormalTok{,}\StringTok{"BRA"}\NormalTok{,}\StringTok{"BRB"}\NormalTok{,}\StringTok{"BRN"}\NormalTok{,}\StringTok{"BTN"}\NormalTok{,}\StringTok{"BWA"}\NormalTok{,}\StringTok{"CAF"}\NormalTok{,}\StringTok{"CAN"}\NormalTok{,}\StringTok{"CHE"}\NormalTok{,}\StringTok{"CHL"}\NormalTok{,}\StringTok{"CHN"}\NormalTok{,}\StringTok{"CIV"}\NormalTok{,}\StringTok{"CMR"}\NormalTok{,}\StringTok{"COG"}\NormalTok{,}\StringTok{"COL"}\NormalTok{,}\StringTok{"COM"}\NormalTok{,}\StringTok{"CPV"}\NormalTok{,}\StringTok{"CRI"}\NormalTok{,}\StringTok{"CUB"}\NormalTok{,}\StringTok{"CYP"}\NormalTok{,}\StringTok{"CZE"}\NormalTok{,}\StringTok{"DEU"}\NormalTok{,}\StringTok{"DJI"}\NormalTok{,}\StringTok{"DNK"}\NormalTok{,}\StringTok{"DOM"}\NormalTok{,}\StringTok{"DZA"}\NormalTok{,}\StringTok{"ECU"}\NormalTok{,}\StringTok{"EGY"}\NormalTok{,}\StringTok{"ERI"}\NormalTok{,}\StringTok{"ESP"}\NormalTok{,}\StringTok{"EST"}\NormalTok{,}\StringTok{"ETH"}\NormalTok{,}\StringTok{"FIN"}\NormalTok{,}\StringTok{"FJI"}\NormalTok{,}\StringTok{"FRA"}\NormalTok{,}\StringTok{"FSM"}\NormalTok{,}\StringTok{"GAB"}\NormalTok{,}\StringTok{"GBR"}\NormalTok{,}\StringTok{"GEO"}\NormalTok{,}\StringTok{"GHA"}\NormalTok{,}\StringTok{"GIN"}\NormalTok{,}\StringTok{"GMB"}\NormalTok{,}\StringTok{"GNB"}\NormalTok{,}\StringTok{"GNQ"}\NormalTok{,}\StringTok{"GRC"}\NormalTok{,}\StringTok{"GRD"}\NormalTok{,}\StringTok{"GTM"}\NormalTok{,}\StringTok{"GUM"}\NormalTok{,}\StringTok{"GUY"}\NormalTok{,}\StringTok{"HKG"}\NormalTok{,}\StringTok{"HND"}\NormalTok{,}\StringTok{"HRV"}\NormalTok{,}\StringTok{"HTI"}\NormalTok{,}\StringTok{"HUN"}\NormalTok{,}\StringTok{"IDN"}\NormalTok{,}\StringTok{"IND"}\NormalTok{,}\StringTok{"IRL"}\NormalTok{,}\StringTok{"IRN"}\NormalTok{,}\StringTok{"IRQ"}\NormalTok{,}\StringTok{"ISL"}\NormalTok{,}\StringTok{"ITA"}\NormalTok{,}\StringTok{"JAM"}\NormalTok{,}\StringTok{"JOR"}\NormalTok{,}\StringTok{"JPN"}\NormalTok{,}\StringTok{"KAZ"}\NormalTok{,}\StringTok{"KEN"}\NormalTok{,}\StringTok{"KGZ"}\NormalTok{,}\StringTok{"KHM"}\NormalTok{,}\StringTok{"KIR"}\NormalTok{,}\StringTok{"KOR"}\NormalTok{,}\StringTok{"KWT"}\NormalTok{,}\StringTok{"LAO"}\NormalTok{,}\StringTok{"LBN"}\NormalTok{,}\StringTok{"LBR"}\NormalTok{,}\StringTok{"LBY"}\NormalTok{,}\StringTok{"LCA"}\NormalTok{,}\StringTok{"LKA"}\NormalTok{,}\StringTok{"LSO"}\NormalTok{,}\StringTok{"LTU"}\NormalTok{,}\StringTok{"LUX"}\NormalTok{,}\StringTok{"LVA"}\NormalTok{,}\StringTok{"MAC"}\NormalTok{,}\StringTok{"MAR"}\NormalTok{,}\StringTok{"MDA"}\NormalTok{,}\StringTok{"MDG"}\NormalTok{,}\StringTok{"MDV"}\NormalTok{,}\StringTok{"MEX"}\NormalTok{,}\StringTok{"MKD"}\NormalTok{,}\StringTok{"MLI"}\NormalTok{,}\StringTok{"MLT"}\NormalTok{,}\StringTok{"MMR"}\NormalTok{,}\StringTok{"MNE"}\NormalTok{,}\StringTok{"MNG"}\NormalTok{,}\StringTok{"MOZ"}\NormalTok{,}\StringTok{"MRT"}\NormalTok{,}\StringTok{"MUS"}\NormalTok{,}\StringTok{"MWI"}\NormalTok{,}\StringTok{"MYS"}\NormalTok{,}\StringTok{"NAM"}\NormalTok{,}\StringTok{"NCL"}\NormalTok{,}\StringTok{"NER"}\NormalTok{,}\StringTok{"NGA"}\NormalTok{,}\StringTok{"NIC"}\NormalTok{,}\StringTok{"NLD"}\NormalTok{,}\StringTok{"NOR"}\NormalTok{,}\StringTok{"NPL"}\NormalTok{,}\StringTok{"NZL"}\NormalTok{,}\StringTok{"OMN"}\NormalTok{,}\StringTok{"PAK"}\NormalTok{,}\StringTok{"PAN"}\NormalTok{,}\StringTok{"PER"}\NormalTok{,}\StringTok{"PHL"}\NormalTok{,}\StringTok{"PNG"}\NormalTok{,}\StringTok{"POL"}\NormalTok{,}\StringTok{"PRI"}\NormalTok{,}\StringTok{"PRT"}\NormalTok{,}\StringTok{"PRY"}\NormalTok{,}\StringTok{"PYF"}\NormalTok{,}\StringTok{"QAT"}\NormalTok{,}\StringTok{"ROU"}\NormalTok{,}\StringTok{"RUS"}\NormalTok{,}\StringTok{"RWA"}\NormalTok{,}\StringTok{"SAU"}\NormalTok{,}\StringTok{"SDN"}\NormalTok{,}\StringTok{"SEN"}\NormalTok{,}\StringTok{"SGP"}\NormalTok{,}\StringTok{"SLB"}\NormalTok{,}\StringTok{"SLE"}\NormalTok{,}\StringTok{"SLV"}\NormalTok{,}\StringTok{"SOM"}\NormalTok{,}\StringTok{"SSD"}\NormalTok{,}\StringTok{"STP"}\NormalTok{,}\StringTok{"SUR"}\NormalTok{,}\StringTok{"SVK"}\NormalTok{,}\StringTok{"SVN"}\NormalTok{,}\StringTok{"SWE"}\NormalTok{,}\StringTok{"SWZ"}\NormalTok{,}\StringTok{"SYR"}\NormalTok{,}\StringTok{"TCD"}\NormalTok{,}\StringTok{"TGO"}\NormalTok{,}\StringTok{"THA"}\NormalTok{,}\StringTok{"TJK"}\NormalTok{,}\StringTok{"TKM"}\NormalTok{,}\StringTok{"TLS"}\NormalTok{,}\StringTok{"TON"}\NormalTok{,}\StringTok{"TTO"}\NormalTok{,}\StringTok{"TUN"}\NormalTok{,}\StringTok{"TUR"}\NormalTok{,}\StringTok{"TZA"}\NormalTok{,}\StringTok{"UGA"}\NormalTok{,}\StringTok{"UKR"}\NormalTok{,}\StringTok{"URY"}\NormalTok{,}\StringTok{"USA"}\NormalTok{,}\StringTok{"UZB"}\NormalTok{,}\StringTok{"VCT"}\NormalTok{,}\StringTok{"VEN"}\NormalTok{,}\StringTok{"VIR"}\NormalTok{,}\StringTok{"VNM"}\NormalTok{,}\StringTok{"VUT"}\NormalTok{,}\StringTok{"WSM"}\NormalTok{,}\StringTok{"YEM"}\NormalTok{,}\StringTok{"ZAF"}\NormalTok{,}\StringTok{"COD"}\NormalTok{,}\StringTok{"ZMB"}\NormalTok{,}\StringTok{"ZWE"}\NormalTok{)}
+\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{1960}\NormalTok{ <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{65.5693658536586}\NormalTok{,}\FloatTok{32.328512195122}\NormalTok{,}\FloatTok{32.9848292682927}\NormalTok{,}\FloatTok{62.2543658536585}\NormalTok{,}\FloatTok{52.2432195121951}\NormalTok{,}\FloatTok{65.2155365853659}\NormalTok{,}\FloatTok{65.8634634146342}\NormalTok{,}\FloatTok{61.7827317073171}\NormalTok{,}\FloatTok{70.8170731707317}\NormalTok{,}\FloatTok{68.5856097560976}\NormalTok{,}\FloatTok{60.836243902439}\NormalTok{,}\FloatTok{41.2360487804878}\NormalTok{,}\FloatTok{69.7019512195122}\NormalTok{,}\FloatTok{37.2782682926829}\NormalTok{,}\FloatTok{34.4779024390244}\NormalTok{,}\FloatTok{45.8293170731707}\NormalTok{,}\FloatTok{69.2475609756098}\NormalTok{,}\FloatTok{52.0893658536585}\NormalTok{,}\FloatTok{62.7290487804878}\NormalTok{,}\FloatTok{60.2762195121951}\NormalTok{,}\FloatTok{67.7080975609756}\NormalTok{,}\FloatTok{59.9613658536585}\NormalTok{,}\FloatTok{42.1183170731707}\NormalTok{,}\FloatTok{54.2054634146342}\NormalTok{,}\FloatTok{60.7380487804878}\NormalTok{,}\FloatTok{62.5003658536585}\NormalTok{,}\FloatTok{32.3593658536585}\NormalTok{,}\FloatTok{50.5477317073171}\NormalTok{,}\FloatTok{36.4826341463415}\NormalTok{,}\FloatTok{71.1331707317073}\NormalTok{,}\FloatTok{71.3134146341463}\NormalTok{,}\FloatTok{57.4582926829268}\NormalTok{,}\FloatTok{43.4658048780488}\NormalTok{,}\FloatTok{36.8724146341463}\NormalTok{,}\FloatTok{41.523756097561}\NormalTok{,}\FloatTok{48.5816341463415}\NormalTok{,}\FloatTok{56.716756097561}\NormalTok{,}\FloatTok{41.4424390243903}\NormalTok{,}\FloatTok{48.8564146341463}\NormalTok{,}\FloatTok{60.5761951219512}\NormalTok{,}\FloatTok{63.9046585365854}\NormalTok{,}\FloatTok{69.5939268292683}\NormalTok{,}\FloatTok{70.3487804878049}\NormalTok{,}\FloatTok{69.3129512195122}\NormalTok{,}\FloatTok{44.0212682926829}\NormalTok{,}\FloatTok{72.1765853658537}\NormalTok{,}\FloatTok{51.8452682926829}\NormalTok{,}\FloatTok{46.1351219512195}\NormalTok{,}\FloatTok{53.215}\NormalTok{,}\FloatTok{48.0137073170732}\NormalTok{,}\FloatTok{37.3629024390244}\NormalTok{,}\FloatTok{69.1092682926829}\NormalTok{,}\FloatTok{67.9059756097561}\NormalTok{,}\FloatTok{38.4057073170732}\NormalTok{,}\FloatTok{68.819756097561}\NormalTok{,}\FloatTok{55.9584878048781}\NormalTok{,}\FloatTok{69.8682926829268}\NormalTok{,}\FloatTok{57.5865853658537}\NormalTok{,}\FloatTok{39.5701219512195}\NormalTok{,}\FloatTok{71.1268292682927}\NormalTok{,}\FloatTok{63.4318536585366}\NormalTok{,}\FloatTok{45.8314634146342}\NormalTok{,}\FloatTok{34.8863902439024}\NormalTok{,}\FloatTok{32.0422195121951}\NormalTok{,}\FloatTok{37.8404390243902}\NormalTok{,}\FloatTok{36.7330487804878}\NormalTok{,}\FloatTok{68.1639024390244}\NormalTok{,}\FloatTok{59.8159268292683}\NormalTok{,}\FloatTok{45.5316341463415}\NormalTok{,}\FloatTok{61.2263414634146}\NormalTok{,}\FloatTok{60.2787317073171}\NormalTok{,}\FloatTok{66.9997073170732}\NormalTok{,}\FloatTok{46.2883170731707}\NormalTok{,}\FloatTok{64.6086585365854}\NormalTok{,}\FloatTok{42.1000975609756}\NormalTok{,}\FloatTok{68.0031707317073}\NormalTok{,}\FloatTok{48.6403170731707}\NormalTok{,}\FloatTok{41.1719512195122}\NormalTok{,}\FloatTok{69.691756097561}\NormalTok{,}\FloatTok{44.945512195122}\NormalTok{,}\FloatTok{48.0306829268293}\NormalTok{,}\FloatTok{73.4286585365854}\NormalTok{,}\FloatTok{69.1239024390244}\NormalTok{,}\FloatTok{64.1918292682927}\NormalTok{,}\FloatTok{52.6852682926829}\NormalTok{,}\FloatTok{67.6660975609756}\NormalTok{,}\FloatTok{58.3675853658537}\NormalTok{,}\FloatTok{46.3624146341463}\NormalTok{,}\FloatTok{56.1280731707317}\NormalTok{,}\FloatTok{41.2320243902439}\NormalTok{,}\FloatTok{49.2159756097561}\NormalTok{,}\FloatTok{53.0013170731707}\NormalTok{,}\FloatTok{60.3479512195122}\NormalTok{,}\FloatTok{43.2044634146342}\NormalTok{,}\FloatTok{63.2801219512195}\NormalTok{,}\FloatTok{34.7831707317073}\NormalTok{,}\FloatTok{42.6411951219512}\NormalTok{,}\FloatTok{57.303756097561}\NormalTok{,}\FloatTok{59.7471463414634}\NormalTok{,}\FloatTok{46.5107073170732}\NormalTok{,}\FloatTok{69.8473170731707}\NormalTok{,}\FloatTok{68.4463902439024}\NormalTok{,}\FloatTok{69.7868292682927}\NormalTok{,}\FloatTok{64.6609268292683}\NormalTok{,}\FloatTok{48.4466341463415}\NormalTok{,}\FloatTok{61.8127804878049}\NormalTok{,}\FloatTok{39.9746829268293}\NormalTok{,}\FloatTok{37.2686341463415}\NormalTok{,}\FloatTok{57.0656341463415}\NormalTok{,}\FloatTok{60.6228048780488}\NormalTok{,}\FloatTok{28.2116097560976}\NormalTok{,}\FloatTok{67.6017804878049}\NormalTok{,}\FloatTok{42.7363902439024}\NormalTok{,}\FloatTok{63.7056097560976}\NormalTok{,}\FloatTok{48.3688048780488}\NormalTok{,}\FloatTok{35.0037073170732}\NormalTok{,}\FloatTok{43.4830975609756}\NormalTok{,}\FloatTok{58.7452195121951}\NormalTok{,}\FloatTok{37.7736341463415}\NormalTok{,}\FloatTok{59.4753414634146}\NormalTok{,}\FloatTok{46.8803902439024}\NormalTok{,}\FloatTok{58.6390243902439}\NormalTok{,}\FloatTok{35.5150487804878}\NormalTok{,}\FloatTok{37.1829512195122}\NormalTok{,}\FloatTok{46.9988292682927}\NormalTok{,}\FloatTok{73.3926829268293}\NormalTok{,}\FloatTok{73.549756097561}\NormalTok{,}\FloatTok{35.1708292682927}\NormalTok{,}\FloatTok{71.2365853658537}\NormalTok{,}\FloatTok{42.6670731707317}\NormalTok{,}\FloatTok{45.2904634146342}\NormalTok{,}\FloatTok{60.8817073170732}\NormalTok{,}\FloatTok{47.6915853658537}\NormalTok{,}\FloatTok{57.8119268292683}\NormalTok{,}\FloatTok{38.462243902439}\NormalTok{,}\FloatTok{67.6804878048781}\NormalTok{,}\FloatTok{68.7196097560976}\NormalTok{,}\FloatTok{62.8089268292683}\NormalTok{,}\FloatTok{63.7937073170732}\NormalTok{,}\FloatTok{56.3570487804878}\NormalTok{,}\FloatTok{61.2060731707317}\NormalTok{,}\FloatTok{65.6424390243903}\NormalTok{,}\FloatTok{66.0552926829268}\NormalTok{,}\FloatTok{42.2492926829268}\NormalTok{,}\FloatTok{45.6662682926829}\NormalTok{,}\FloatTok{48.1876341463415}\NormalTok{,}\FloatTok{38.206}\NormalTok{,}\FloatTok{65.6598292682927}\NormalTok{,}\FloatTok{49.3817073170732}\NormalTok{,}\FloatTok{30.3315365853659}\NormalTok{,}\FloatTok{49.9479268292683}\NormalTok{,}\FloatTok{36.9658780487805}\NormalTok{,}\FloatTok{31.6767073170732}\NormalTok{,}\FloatTok{50.4513658536585}\NormalTok{,}\FloatTok{59.6801219512195}\NormalTok{,}\FloatTok{69.9759268292683}\NormalTok{,}\FloatTok{68.9780487804878}\NormalTok{,}\FloatTok{73.0056097560976}\NormalTok{,}\FloatTok{44.2337804878049}\NormalTok{,}\FloatTok{52.768243902439}\NormalTok{,}\FloatTok{38.0161219512195}\NormalTok{,}\FloatTok{40.2728292682927}\NormalTok{,}\FloatTok{54.6993170731707}\NormalTok{,}\FloatTok{56.1535365853659}\NormalTok{,}\FloatTok{54.4586829268293}\NormalTok{,}\FloatTok{33.7271219512195}\NormalTok{,}\FloatTok{61.3645365853659}\NormalTok{,}\FloatTok{62.6575853658537}\NormalTok{,}\FloatTok{42.009756097561}\NormalTok{,}\FloatTok{45.3844146341463}\NormalTok{,}\FloatTok{43.6538780487805}\NormalTok{,}\FloatTok{43.9835609756098}\NormalTok{,}\FloatTok{68.2995365853659}\NormalTok{,}\FloatTok{67.8963902439025}\NormalTok{,}\FloatTok{69.7707317073171}\NormalTok{,}\FloatTok{58.8855365853659}\NormalTok{,}\FloatTok{57.7238780487805}\NormalTok{,}\FloatTok{59.2851219512195}\NormalTok{,}\FloatTok{63.7302195121951}\NormalTok{,}\FloatTok{59.0670243902439}\NormalTok{,}\FloatTok{46.4874878048781}\NormalTok{,}\FloatTok{49.969512195122}\NormalTok{,}\FloatTok{34.3638048780488}\NormalTok{,}\FloatTok{49.0362926829268}\NormalTok{,}\FloatTok{41.0180487804878}\NormalTok{,}\FloatTok{45.1098048780488}\NormalTok{,}\FloatTok{51.5424634146342}\NormalTok{)}
+\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{2013}\NormalTok{ <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{75.3286585365854}\NormalTok{,}\FloatTok{60.0282682926829}\NormalTok{,}\FloatTok{51.8661707317073}\NormalTok{,}\FloatTok{77.537243902439}\NormalTok{,}\FloatTok{77.1956341463415}\NormalTok{,}\FloatTok{75.9860975609756}\NormalTok{,}\FloatTok{74.5613658536585}\NormalTok{,}\FloatTok{75.7786585365854}\NormalTok{,}\FloatTok{82.1975609756098}\NormalTok{,}\FloatTok{80.890243902439}\NormalTok{,}\FloatTok{70.6931463414634}\NormalTok{,}\FloatTok{56.2516097560976}\NormalTok{,}\FloatTok{80.3853658536585}\NormalTok{,}\FloatTok{59.3120243902439}\NormalTok{,}\FloatTok{58.2406341463415}\NormalTok{,}\FloatTok{71.245243902439}\NormalTok{,}\FloatTok{74.4658536585366}\NormalTok{,}\FloatTok{76.5459512195122}\NormalTok{,}\FloatTok{75.0735365853659}\NormalTok{,}\FloatTok{76.2769268292683}\NormalTok{,}\FloatTok{72.4707317073171}\NormalTok{,}\FloatTok{69.9820487804878}\NormalTok{,}\FloatTok{67.9134390243903}\NormalTok{,}\FloatTok{74.1224390243903}\NormalTok{,}\FloatTok{75.3339512195122}\NormalTok{,}\FloatTok{78.5466585365854}\NormalTok{,}\FloatTok{69.1029268292683}\NormalTok{,}\FloatTok{64.3608048780488}\NormalTok{,}\FloatTok{49.8798780487805}\NormalTok{,}\FloatTok{81.4011219512195}\NormalTok{,}\FloatTok{82.7487804878049}\NormalTok{,}\FloatTok{81.1979268292683}\NormalTok{,}\FloatTok{75.3530243902439}\NormalTok{,}\FloatTok{51.2084634146342}\NormalTok{,}\FloatTok{55.0418048780488}\NormalTok{,}\FloatTok{61.6663902439024}\NormalTok{,}\FloatTok{73.8097317073171}\NormalTok{,}\FloatTok{62.9321707317073}\NormalTok{,}\FloatTok{72.9723658536585}\NormalTok{,}\FloatTok{79.2252195121951}\NormalTok{,}\FloatTok{79.2563902439025}\NormalTok{,}\FloatTok{79.9497804878049}\NormalTok{,}\FloatTok{78.2780487804878}\NormalTok{,}\FloatTok{81.0439024390244}\NormalTok{,}\FloatTok{61.6864634146342}\NormalTok{,}\FloatTok{80.3024390243903}\NormalTok{,}\FloatTok{73.3199024390244}\NormalTok{,}\FloatTok{74.5689512195122}\NormalTok{,}\FloatTok{75.648512195122}\NormalTok{,}\FloatTok{70.9257804878049}\NormalTok{,}\FloatTok{63.1778780487805}\NormalTok{,}\FloatTok{82.4268292682927}\NormalTok{,}\FloatTok{76.4243902439025}\NormalTok{,}\FloatTok{63.4421951219512}\NormalTok{,}\FloatTok{80.8317073170732}\NormalTok{,}\FloatTok{69.9179268292683}\NormalTok{,}\FloatTok{81.9682926829268}\NormalTok{,}\FloatTok{68.9733902439024}\NormalTok{,}\FloatTok{63.8435853658537}\NormalTok{,}\FloatTok{80.9560975609756}\NormalTok{,}\FloatTok{74.079512195122}\NormalTok{,}\FloatTok{61.1420731707317}\NormalTok{,}\FloatTok{58.216487804878}\NormalTok{,}\FloatTok{59.9992682926829}\NormalTok{,}\FloatTok{54.8384146341464}\NormalTok{,}\FloatTok{57.2908292682927}\NormalTok{,}\FloatTok{80.6341463414634}\NormalTok{,}\FloatTok{73.1935609756098}\NormalTok{,}\FloatTok{71.4863902439024}\NormalTok{,}\FloatTok{78.872512195122}\NormalTok{,}\FloatTok{66.3100243902439}\NormalTok{,}\FloatTok{83.8317073170732}\NormalTok{,}\FloatTok{72.9428536585366}\NormalTok{,}\FloatTok{77.1268292682927}\NormalTok{,}\FloatTok{62.4011463414634}\NormalTok{,}\FloatTok{75.2682926829268}\NormalTok{,}\FloatTok{68.7046097560976}\NormalTok{,}\FloatTok{67.6604146341463}\NormalTok{,}\FloatTok{81.0439024390244}\NormalTok{,}\FloatTok{75.1259756097561}\NormalTok{,}\FloatTok{69.4716829268293}\NormalTok{,}\FloatTok{83.1170731707317}\NormalTok{,}\FloatTok{82.290243902439}\NormalTok{,}\FloatTok{73.4689268292683}\NormalTok{,}\FloatTok{73.9014146341463}\NormalTok{,}\FloatTok{83.3319512195122}\NormalTok{,}\FloatTok{70.45}\NormalTok{,}\FloatTok{60.9537804878049}\NormalTok{,}\FloatTok{70.2024390243902}\NormalTok{,}\FloatTok{67.7720487804878}\NormalTok{,}\FloatTok{65.7665853658537}\NormalTok{,}\FloatTok{81.459756097561}\NormalTok{,}\FloatTok{74.462756097561}\NormalTok{,}\FloatTok{65.687243902439}\NormalTok{,}\FloatTok{80.1288780487805}\NormalTok{,}\FloatTok{60.5203902439024}\NormalTok{,}\FloatTok{71.6576829268293}\NormalTok{,}\FloatTok{74.9127073170732}\NormalTok{,}\FloatTok{74.2402926829268}\NormalTok{,}\FloatTok{49.3314634146342}\NormalTok{,}\FloatTok{74.1634146341464}\NormalTok{,}\FloatTok{81.7975609756098}\NormalTok{,}\FloatTok{73.9804878048781}\NormalTok{,}\FloatTok{80.3391463414634}\NormalTok{,}\FloatTok{73.7090487804878}\NormalTok{,}\FloatTok{68.811512195122}\NormalTok{,}\FloatTok{64.6739024390244}\NormalTok{,}\FloatTok{76.6026097560976}\NormalTok{,}\FloatTok{76.5326585365854}\NormalTok{,}\FloatTok{75.1870487804878}\NormalTok{,}\FloatTok{57.5351951219512}\NormalTok{,}\FloatTok{80.7463414634146}\NormalTok{,}\FloatTok{65.6540975609756}\NormalTok{,}\FloatTok{74.7583658536585}\NormalTok{,}\FloatTok{69.0618048780488}\NormalTok{,}\FloatTok{54.641512195122}\NormalTok{,}\FloatTok{62.8027073170732}\NormalTok{,}\FloatTok{74.46}\NormalTok{,}\FloatTok{61.466}\NormalTok{,}\FloatTok{74.567512195122}\NormalTok{,}\FloatTok{64.3438780487805}\NormalTok{,}\FloatTok{77.1219512195122}\NormalTok{,}\FloatTok{60.8281463414634}\NormalTok{,}\FloatTok{52.4421463414634}\NormalTok{,}\FloatTok{74.514756097561}\NormalTok{,}\FloatTok{81.1048780487805}\NormalTok{,}\FloatTok{81.4512195121951}\NormalTok{,}\FloatTok{69.222}\NormalTok{,}\FloatTok{81.4073170731707}\NormalTok{,}\FloatTok{76.8410487804878}\NormalTok{,}\FloatTok{65.9636829268293}\NormalTok{,}\FloatTok{77.4192195121951}\NormalTok{,}\FloatTok{74.2838536585366}\NormalTok{,}\FloatTok{68.1315609756097}\NormalTok{,}\FloatTok{62.4491707317073}\NormalTok{,}\FloatTok{76.8487804878049}\NormalTok{,}\FloatTok{78.7111951219512}\NormalTok{,}\FloatTok{80.3731707317073}\NormalTok{,}\FloatTok{72.7991707317073}\NormalTok{,}\FloatTok{76.3340731707317}\NormalTok{,}\FloatTok{78.4184878048781}\NormalTok{,}\FloatTok{74.4634146341463}\NormalTok{,}\FloatTok{71.0731707317073}\NormalTok{,}\FloatTok{63.3948292682927}\NormalTok{,}\FloatTok{74.1776341463415}\NormalTok{,}\FloatTok{63.1670487804878}\NormalTok{,}\FloatTok{65.878756097561}\NormalTok{,}\FloatTok{82.3463414634146}\NormalTok{,}\FloatTok{67.7189268292683}\NormalTok{,}\FloatTok{50.3631219512195}\NormalTok{,}\FloatTok{72.4981463414634}\NormalTok{,}\FloatTok{55.0230243902439}\NormalTok{,}\FloatTok{55.2209024390244}\NormalTok{,}\FloatTok{66.259512195122}\NormalTok{,}\FloatTok{70.99}\NormalTok{,}\FloatTok{76.2609756097561}\NormalTok{,}\FloatTok{80.2780487804878}\NormalTok{,}\FloatTok{81.7048780487805}\NormalTok{,}\FloatTok{48.9379268292683}\NormalTok{,}\FloatTok{74.7157804878049}\NormalTok{,}\FloatTok{51.1914878048781}\NormalTok{,}\FloatTok{59.1323658536585}\NormalTok{,}\FloatTok{74.2469268292683}\NormalTok{,}\FloatTok{69.4001707317073}\NormalTok{,}\FloatTok{65.4565609756098}\NormalTok{,}\FloatTok{67.5223658536585}\NormalTok{,}\FloatTok{72.6403414634147}\NormalTok{,}\FloatTok{70.3052926829268}\NormalTok{,}\FloatTok{73.6463414634147}\NormalTok{,}\FloatTok{75.1759512195122}\NormalTok{,}\FloatTok{64.2918292682927}\NormalTok{,}\FloatTok{57.7676829268293}\NormalTok{,}\FloatTok{71.159512195122}\NormalTok{,}\FloatTok{76.8361951219512}\NormalTok{,}\FloatTok{78.8414634146341}\NormalTok{,}\FloatTok{68.2275853658537}\NormalTok{,}\FloatTok{72.8108780487805}\NormalTok{,}\FloatTok{74.0744146341464}\NormalTok{,}\FloatTok{79.6243902439024}\NormalTok{,}\FloatTok{75.756487804878}\NormalTok{,}\FloatTok{71.669243902439}\NormalTok{,}\FloatTok{73.2503902439024}\NormalTok{,}\FloatTok{63.583512195122}\NormalTok{,}\FloatTok{56.7365853658537}\NormalTok{,}\FloatTok{58.2719268292683}\NormalTok{,}\FloatTok{59.2373658536585}\NormalTok{,}\FloatTok{55.633}\NormalTok{)}
+
+\CommentTok{#(c) Kirill Eremenko, www.superdatascience.com}
+
+
+\CommentTok{# Build  Life_Expectancy data frame using country_code and life expectancy}
+
+
+\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{1960}\NormalTok{ <-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Code=}\NormalTok{Country_Code,}\DataTypeTok{Life_Expectancy=}\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{1960}\NormalTok{)}
+\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{2013}\NormalTok{ <-}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Code=}\NormalTok{Country_Code,}\DataTypeTok{Life_Expectancy=}\NormalTok{Life_Expectancy_At_Birth_}\DecValTok{2013}\NormalTok{)}
+
+
+
+\CommentTok{#Build Fertility  data frame from excel }
+\NormalTok{Fertility_Rate_Total <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\KeywordTok{file.choose}\NormalTok{())}
+\NormalTok{Fertility_Rate_}\DecValTok{1960}\NormalTok{ <-}\StringTok{ }\NormalTok{Fertility_Rate_Total[Fertility_Rate_Total}\OperatorTok{$}\NormalTok{Year}\OperatorTok{==}\DecValTok{1960}\NormalTok{,]}
+\NormalTok{Fertility_Rate_}\DecValTok{2013}\NormalTok{ <-}\StringTok{ }\NormalTok{Fertility_Rate_Total[Fertility_Rate_Total}\OperatorTok{$}\NormalTok{Year}\OperatorTok{==}\DecValTok{2013}\NormalTok{,]}
+
+
+
+\CommentTok{#Merge life expentancy  and Fertility rate data frames for each of the year}
+
+\NormalTok{Life_Expectancy_Fertility_Rate_}\DecValTok{1960}\NormalTok{ <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(Life_Expectancy_At_Birth_}\DecValTok{1960}\NormalTok{,Fertility_Rate_}\DecValTok{1960}\NormalTok{,}\DataTypeTok{by.x =}\StringTok{"Code"}\NormalTok{,}\DataTypeTok{by.y=}\StringTok{"Country.Code"}\NormalTok{ )}
+\NormalTok{Life_Expectancy_Fertility_Rate_}\DecValTok{2013}\NormalTok{ <-}\StringTok{ }\KeywordTok{merge}\NormalTok{(Life_Expectancy_At_Birth_}\DecValTok{2013}\NormalTok{,Fertility_Rate_}\DecValTok{2013}\NormalTok{,}\DataTypeTok{by.x =}\StringTok{"Code"}\NormalTok{,}\DataTypeTok{by.y=}\StringTok{"Country.Code"}\NormalTok{ )}
+
+\KeywordTok{head}\NormalTok{(Life_Expectancy_Fertility_Rate_}\DecValTok{1960}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Code Life_Expectancy         Country.Name       Region Year
+## 1  ABW        65.56937                Aruba The Americas 1960
+## 2  AFG        32.32851          Afghanistan         Asia 1960
+## 3  AGO        32.98483               Angola       Africa 1960
+## 4  ALB        62.25437              Albania       Europe 1960
+## 5  ARE        52.24322 United Arab Emirates  Middle East 1960
+## 6  ARG        65.21554            Argentina The Americas 1960
+##   Fertility.Rate
+## 1          4.820
+## 2          7.450
+## 3          7.379
+## 4          6.186
+## 5          6.928
+## 6          3.109
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Build  scatter plot for 1960 }
+\KeywordTok{qplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{Life_Expectancy_Fertility_Rate_}\DecValTok{1960}\NormalTok{,}\DataTypeTok{x=}\NormalTok{Fertility.Rate,}\DataTypeTok{y=}\NormalTok{Life_Expectancy,}\DataTypeTok{size=}\KeywordTok{I}\NormalTok{(}\DecValTok{5}\NormalTok{),}\DataTypeTok{color=}\NormalTok{Region,}\DataTypeTok{alpha=}\KeywordTok{I}\NormalTok{(}\FloatTok{0.5}\NormalTok{),}\DataTypeTok{main=}\StringTok{"Life expentancy vs Fertility rate for 1960"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{World-Trend-Analysis_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Build  scatter plot for 2013 }
+\KeywordTok{qplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{Life_Expectancy_Fertility_Rate_}\DecValTok{2013}\NormalTok{,}\DataTypeTok{x=}\NormalTok{Fertility.Rate,}\DataTypeTok{y=}\NormalTok{Life_Expectancy,}\DataTypeTok{size=}\KeywordTok{I}\NormalTok{(}\DecValTok{5}\NormalTok{),}\DataTypeTok{color=}\NormalTok{Region,}\DataTypeTok{main=}\StringTok{"Life expentancy vs Fertility rate for 2013"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{World-Trend-Analysis_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+
+\end{document}
